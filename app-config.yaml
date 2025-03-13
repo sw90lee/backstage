@@ -119,7 +119,7 @@ catalog:
   providers:
     keycloakOrg:
       default:
-        baseUrl: https://keycloak.icnp.in-soft.co.kr
+        baseUrl: ${KEYCLOAK_URL}
         realm: ${KEYCLOAK_RELAM}
         loginRealm: ${KEYCLOAK_RELAM}
         clientId: ${KEYCLOAK_CLIENT_ID}
