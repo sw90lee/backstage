@@ -71,9 +71,9 @@ auth:
   providers:
     keycloak:
       development:
-        metadataUrl: https://keycloak.icnp.in-soft.co.kr/realms/master/.well-known/openid-configuration
-        clientId: backstage
-        clientSecret: mGsBkClfRjOTklwDxE7LqJkqEnntd6HW
+        metadataUrl: ${KEYCLOAK_URL}/realms/master/.well-known/openid-configuration
+        clientId: ${KEYCLOAK_CLIENT_ID}
+        clientSecret: ${KEYCLOAK_CLIENT_SECRET}
         prompt: auto
     # See https://backstage.io/docs/auth/guest/provider
     # guest: {}
@@ -120,10 +120,10 @@ catalog:
     keycloakOrg:
       default:
         baseUrl: https://keycloak.icnp.in-soft.co.kr
-        realm: master
-        loginRealm: master
-        clientId: backstage
-        clientSecret: mGsBkClfRjOTklwDxE7LqJkqEnntd6HW
+        realm: ${KEYCLOAK_RELAM}
+        loginRealm: ${KEYCLOAK_RELAM}
+        clientId: ${KEYCLOAK_CLIENT_ID}
+        clientSecret: ${KEYCLOAK_CLIENT_SECRET}
         schedule: # Optional (defaults to the configurations below if not provided); same options as in TaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
           frequency: { minutes: 30 } # Customize this to fit your needs
