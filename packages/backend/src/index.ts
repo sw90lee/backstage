@@ -17,7 +17,9 @@ import {
   DEFAULT_NAMESPACE,
   stringifyEntityRef,
 } from '@backstage/catalog-model';
+import dotenv from 'dotenv';
 
+dotenv.config({ path: '../../.env' });
 
 const keycloakAuthmodule = createBackendModule({
   // This ID must be exactly "auth" because that's the plugin it targets
