@@ -19,8 +19,35 @@ import {
 } from '@backstage/catalog-model';
 import dotenv from 'dotenv';
 
+import { Duration } from 'luxon';
+import { CustomClustersSupplier } from '../plugins/kubernetes'
+import {
+  kubernetesClusterSupplierExtensionPoint,
+} from '@backstage/plugin-kubernetes-node';
+
 dotenv.config({ path: '../../.env' });
 
+
+// kubernetes module
+export const kubernetesModuleCustomClusterDiscovery = createBackendModule({
+  pluginId: 'kubernetes',
+  moduleId: 'custom-cluster-discovery',
+  register(env) {
+    env.registerInit({
+      deps: {
+        kubernetes: kubernetesClusterSupplierExtensionPoint,
+      },
+      async init({ kubernetes }) {
+        kubernetes.addClusterSupplier(
+          CustomClustersSupplier.create(Duration.fromObject({ minutes: 60 })),
+        );
+      },
+    });
+  },
+});
+
+
+// keycloak authModule
 const keycloakAuthmodule = createBackendModule({
   // This ID must be exactly "auth" because that's the plugin it targets
   pluginId: 'auth',
@@ -104,6 +131,7 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 
 // kubernetes
 backend.add(import('@backstage/plugin-kubernetes-backend'));
+backend.add(kubernetesModuleCustomClusterDiscovery);
 
 // keycloak
 backend.add(import('@backstage-community/plugin-catalog-backend-module-keycloak'));
