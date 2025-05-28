@@ -163,6 +163,11 @@ kubernetes:
           #     apiVersion: 'v1alpha1'
           #     plural: 'rollouts'
 
+jenkins:
+  baseUrl: https://jenkins.example.com
+  username: admin
+  projectCountLimit: 100
+  apiKey: 11fa2b8f76de795b0166e11f883d078ed6
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:

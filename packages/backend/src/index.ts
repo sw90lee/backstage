@@ -137,5 +137,7 @@ backend.add(kubernetesModuleCustomClusterDiscovery);
 backend.add(import('@backstage-community/plugin-catalog-backend-module-keycloak'));
 backend.add(keycloakAuthmodule);
 
+// Jenkins
+backend.add(import('@backstage-community/plugin-jenkins-backend'));
 
 backend.start();

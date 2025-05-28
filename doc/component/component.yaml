@@ -2,9 +2,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: apm-component
+  name: edu-ui
   annotations:
     argocd/app-name: edu-ui
+    jenkins.io/job-full-name: edu-ui
 spec:
   type: service
   owner: admin admin

@@ -1,3 +1,4 @@
+// In packages/app/src/components/catalog/EntityPage.tsx
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import {
@@ -63,6 +64,13 @@ import {
   EntityArgoCDOverviewCard,
   isArgocdAvailable
 } from '@roadiehq/backstage-plugin-argo-cd';
+
+import {
+  EntityJenkinsContent,
+  EntityLatestJenkinsRunCard,
+  isJenkinsAvailable,
+} from '@backstage-community/plugin-jenkins';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -98,6 +106,10 @@ const cicdContent = (
           </Button>
         }
       />
+    </EntitySwitch.Case>
+    {/* Jenkins */}
+    <EntitySwitch.Case if={isJenkinsAvailable}>
+        <EntityJenkinsContent />
     </EntitySwitch.Case>
   </EntitySwitch>
 );
@@ -147,10 +159,20 @@ const overviewContent = (
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
     <EntitySwitch>
+      {/* ArgoCD */}
       <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
         <Grid item sm={4}>
           <EntityArgoCDOverviewCard />
         </Grid>
+      </EntitySwitch.Case>
+      {/* Jenkins */}
+      <EntitySwitch.Case if={isJenkinsAvailable}>
+          <Grid item sm={6}>
+            <EntityLatestJenkinsRunCard
+              branch="main,master"
+              variant="gridItem"
+            />
+          </Grid>
       </EntitySwitch.Case>
     </EntitySwitch>
   </Grid>
@@ -160,6 +182,7 @@ const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+      
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
