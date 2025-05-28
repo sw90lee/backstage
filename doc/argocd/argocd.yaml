@@ -1,0 +1,11 @@
+# argocd.yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: apm-component
+  annotations:
+    argocd/app-name: apm
+spec:
+  lifecycle: production
+  owner: admin admin
+  type: service
