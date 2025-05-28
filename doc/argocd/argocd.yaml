@@ -5,6 +5,7 @@ metadata:
   name: apm-component
   annotations:
     argocd/app-name: edu-ui
+    argocd/app-name: apm
 spec:
   lifecycle: production
   owner: admin admin
