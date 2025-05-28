@@ -5,7 +5,7 @@ metadata:
   name: edu-ui
   annotations:
     argocd/app-name: edu-ui
-    jenkins.io/job-full-name: edu-ui
+    jenkins.io/job-full-name: edu/edu-ui
 spec:
   type: service
   owner: admin admin
