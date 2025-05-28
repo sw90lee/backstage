@@ -4,7 +4,6 @@ kind: Component
 metadata:
   name: apm-component
   annotations:
-    argocd/app-name: apm
     argocd/app-name: edu-ui
 spec:
   lifecycle: production
